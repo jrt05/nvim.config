@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- These are just examples. Replace them with the language
 -- servers you have installed in your system
 require('lspconfig').clangd.setup({})
+require('lspconfig').pyright.setup({})
 require'lspconfig'.lua_ls.setup {
   on_init = function(client)
     if client.workspace_folders then
