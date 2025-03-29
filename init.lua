@@ -104,7 +104,7 @@ require("config.treesitter") -- Treesitter configuration
 require("config.lsp") -- LSP configuration
 
 vim.cmd[[colorscheme tokyonight]]     -- Set colorscheme loaded by Lazy
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)  -- Set key used by undotree
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = 'Undo Tree Toggle' })  -- Set key used by undotree
 
 
 
