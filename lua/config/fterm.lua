@@ -49,11 +49,19 @@ local toggle_term = function()
         if vim.bo[state.floating.buf].buftype ~= "terminal" then
             vim.cmd.term()
         end
+
+        vim.cmd('normal i')     -- Enter insert mode when going to the terminal
     else
         vim.api.nvim_win_hide(state.floating.win)
     end
-    vim.cmd('normal i')
 end
 
 vim.api.nvim_create_user_command("Fterm", toggle_term, {})
 vim.keymap.set("n", "<leader>tt", toggle_term, { desc = "Toggle Floating Terminal" })
+
+
+
+
+
+
+
