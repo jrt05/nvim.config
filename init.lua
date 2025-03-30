@@ -44,6 +44,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 8
 
+-- Disable mode in nvim because we have a status bar that shows it.
+vim.opt.showmode = false
+
 -- Set my tab mappings
 vim.keymap.set('n', '<F8>', ':tabn<CR>', { desc = 'Tab Next'})
 vim.keymap.set('n', '<F7>', ':tabp<CR>', { desc = 'Tab Prev'})
@@ -66,6 +69,9 @@ vim.opt.incsearch = true
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- VimWiki set markdown as the syntax
+vim.g.vimwiki_list = {{syntax= 'markdown', ext= 'md', auto_diary_index= 1}}
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -102,6 +108,8 @@ require("config.lazy")
 require("lazy").setup({ { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" } })
 require("config.treesitter") -- Treesitter configuration
 require("config.lsp") -- LSP configuration
+
+require("config.fterm")     -- Floating terminal
 
 vim.cmd[[colorscheme tokyonight]]     -- Set colorscheme loaded by Lazy
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = 'Undo Tree Toggle' })  -- Set key used by undotree
