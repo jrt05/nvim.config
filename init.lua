@@ -54,6 +54,10 @@ vim.keymap.set('n', '<F2>', ':Tex<CR>', { desc = 'Tab Explorer'})
 vim.keymap.set('n', '<F3>', ':Vex<CR>', { desc = 'Vertical Explorer'})
 vim.keymap.set('n', '<F4>', ':Sex<CR>', { desc = 'Horizontal Explorer'})
 
+-- Buffer navigation
+vim.keymap.set('n', '<M-F8>', ':bn<CR>', { desc = 'Tab Next'})
+vim.keymap.set('n', '<M-F7>', ':bp<CR>', { desc = 'Tab Prev'})
+
 -- Set up tabs to 4 spaces and auto indent
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
