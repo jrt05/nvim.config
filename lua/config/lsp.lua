@@ -1,3 +1,77 @@
+
+
+vim.lsp.config("lua_ls", {
+    cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
+    root_markers = {
+        '.luarc.json',
+        '.luarc.jsonc',
+        '.luacheckrc',
+        '.stylua.toml',
+        'stylua.toml',
+        'selene.toml',
+        'selene.yml',
+        '.git',
+    },
+})
+
+--vim.lsp.config("clang", {
+--    cmd = { 'clangd' },
+--    --filetypes = { 'c', 'cpp', 'cc', 'h' },
+--})
+
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+--[[
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = {buffer = event.buf}
+
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F9>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({'n', 'x'}, '<F10>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F11>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  end,
+})
+]]
+
+vim.diagnostic.config({
+  virtual_text = true,
+  --signs = true,
+  --update_in_insert = false,
+  --underline = true,
+  --severity_sort = false,
+  --float = true,
+})
+
+vim.lsp.enable("lua_ls");
+vim.lsp.enable("clangd");
+vim.lsp.enable("pyright");
+
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  snippet = {
+    expand = function(args)
+      -- You need Neovim v0.10 to use vim.snippet
+      vim.snippet.expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({}),
+})
+
+
+--[[
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
 
@@ -67,7 +141,7 @@ require'lspconfig'.lua_ls.setup {
     Lua = {}
   }
 }
---[[
+-- --[[
 require('lspconfig').lua_ls.setup({
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -82,7 +156,7 @@ require('lspconfig').lua_ls.setup({
             },
           },
         })
-]]
+-- \]\]
 --require('lspconfig').rust_analyzer.setup({})
 
 local cmp = require('cmp')
@@ -104,3 +178,4 @@ cmp.setup({
 
 --require('lspconfig').clangd.setup({})
 
+]]
